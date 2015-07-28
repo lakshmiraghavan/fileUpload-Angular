@@ -27,7 +27,7 @@
                     address: '1600 Amphitheatre'
                 };
             }])
-            .directive('myCustomer', function() {
+            .directive('myCustomer', function($q) {
                 return {
                     templateUrl: 'my-customer.html',
                     scope:{},
@@ -42,7 +42,6 @@
                         //console.log(element[0].lastElementChild);
                       //  console.log(element[0].firstElementChild);
 
-                        var ul = element[0].lastElementChild;
                         var inp = element[0].firstElementChild;
                         inp.addEventListener('change', function () {
                         var files = Array.prototype.slice.call(this.files);
@@ -66,7 +65,7 @@
                 };
 
                 function getFileReaderPromise(file) {
-                    return new Promise(function (resolve, reject) {
+                    return $q(function (resolve, reject) {
                         var reader = new FileReader();
                         reader.addEventListener('loadend', function () {
                             // this.result
