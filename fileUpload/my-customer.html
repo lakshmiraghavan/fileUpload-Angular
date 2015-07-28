@@ -1,10 +1,7 @@
-
-    <input type="file" multiple/>
-    <ul>
-        <!--list of image elements that were selected-->
-    </ul>
-
-
-
-
-{{message}}
+<input type="file" multiple/>
+<br><br><br>
+<ul>
+    <li ng-repeat="image in images">
+        <img  ng-src="{{ image }}" />
+    </li>
+</ul>

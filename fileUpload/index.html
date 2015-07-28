@@ -48,12 +48,19 @@
                         var files = Array.prototype.slice.call(this.files);
                         var promises = files.map(getFileReaderPromise);
                             Promise.all(promises).then(function (data) {
+                                scope.$apply(function () {
+                                    scope.images = data;
+                                    console.log(data);
+                                });
+                            });
+
+                          /*  Promise.all(promises).then(function (data) {
                                 data.forEach(function (datauri) {
                                     var li = createElement('li', ul);
                                     var img = createElement('img', li);
                                     img.src = datauri;
                                 });
-                            });
+                            });*/
                         });
                     }
                 };
@@ -72,18 +79,7 @@
                     });
                 }
 
-                function createElement(elementType, parent, className, innerHTML, custom) {
-                    var element = document.createElement(elementType);
-                    if (parent) parent.appendChild(element);
-                    if (className) element.className = className;
-                    if (innerHTML) element.innerHTML = innerHTML;
-                    if (typeof custom !== 'undefined') {
-                        for (var prop in custom) {
-                            element.setAttribute(prop, custom[prop]);
-                        }
-                    }
-                    return element;
-                }
+
 
 
             });
