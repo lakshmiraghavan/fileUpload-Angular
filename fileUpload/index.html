@@ -46,11 +46,9 @@
                         inp.addEventListener('change', function () {
                         var files = Array.prototype.slice.call(this.files);
                         var promises = files.map(getFileReaderPromise);
-                            Promise.all(promises).then(function (data) {
-                                scope.$apply(function () {
-                                    scope.images = data;
-                                    console.log(data);
-                                });
+                            $q.all(promises).then(function (data) {
+                                scope.images = data;
+                                console.log(data);
                             });
 
                           /*  Promise.all(promises).then(function (data) {
@@ -77,10 +75,6 @@
                         reader.readAsDataURL(file);
                     });
                 }
-
-
-
-
             });
 </script>
 <div ng-controller="Controller">
